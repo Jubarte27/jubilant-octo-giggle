@@ -81,4 +81,8 @@ public class RecordingList<E extends Comparable<? super E>> extends AbstractList
 				"swap: " + accesses.stream().filter(a -> a instanceof Swap).count() + "\n" +
 				"compare: " + accesses.stream().filter(a -> a instanceof Compare).count() + "\n";
 	}
+
+	public ArrayList<E> getInitialElements(){
+		return (ArrayList<E>)initialElements.clone();
+	}
 }

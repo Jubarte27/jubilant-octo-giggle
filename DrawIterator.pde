@@ -1,26 +1,27 @@
-public class Iterator{
+public class DrawIterator{
 	private Drawer drawer;
 	private ArrayList<Integer> vector;
 	private ArrayList<Access> accesses;
 	private RecordingList<Integer> recording;
 	private int accessIndex = 0;
 
-	private int delayMilliseconds = 10;
+	private int delayMilliseconds = 0;
 
 	private color swapColor = color(255, 0, 0);
 	private color readColor = color(0, 0, 255);
 	private color writeColor = color(0, 255, 255);
-	private color compareColor = color(0, 255, 0);
+	private color compareColor = color(0, 100, 0);
 
-	public Iterator(ArrayList<Integer> sortVector, RecordingList<Integer> sortRecording, Drawer dr){
+
+	public DrawIterator(ArrayList<Integer> sortVector, RecordingList<Integer> sortRecording, Drawer dr){
 		drawer = dr;
 		vector = sortVector;
 		recording = sortRecording;
 		accesses = recording.getAccesses();
 	}
 
-	public Iterator(ArrayList<Integer> sortVector, RecordingList<Integer> sortRecording){
-		this(sortVector, sortRecording, new Drawer(4, 10, 300));
+	public DrawIterator(RecordingList<Integer> sortRecording){
+		this((ArrayList<Integer>)sortRecording.getInitialElements(), sortRecording, new Drawer(1, 10, 300));
 	}
 
 	private void applySwap(int firstIndex, int secondIndex){
@@ -73,7 +74,7 @@ public class Iterator{
 	}
 
 	private void printSortStats(){
-    fill(255,255,255);
+    	fill(255,255,255);
 		text(recording.getStats(), 0, 10);
 	}
 
