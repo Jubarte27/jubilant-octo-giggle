@@ -1,35 +1,39 @@
 ArrayList<Access> accesses;
+RecordingList<Integer> recordingList;
 
-int vecSize = 50;
+int vecSize = 100;
 ArrayList<Integer> vector = new ArrayList<>();
 
 Iterator iterator;
 
-void setup() {
+void setup() { 
 	size(500,500);
 	rectMode(CORNERS);
 	strokeWeight(1);
+	textSize(10);
+	//noStroke();
 
-	randomizeVector(vector, vecSize);
-	accesses = applySorter(vector);
-	iterator = new Iterator(vector, accesses);
-}
+	randomizeVector();
+	applySorter();
 
-public void randomizeVector(ArrayList<Integer> vec, int size){
-	for(int i = 0; i < size; i++){
-		vec.add(int(random(10,50)));
-  	}
-}
-
-ArrayList<Access> applySorter(ArrayList<Integer> vec){
-	RecordingList<Integer> recordingList = new RecordingList<>(vec);
-	QuickSort.sort(recordingList);
-	recordingList.stop();
-	// print(recordingList);
-  	return recordingList.getAccesses();
+	iterator = new Iterator(vector, recordingList);
 }
 
 void draw(){
 	background(0);
 	iterator.iterateThroughAccesses();
+}
+
+
+public void randomizeVector(){
+	for(int i = 0; i < vecSize; i++){
+		vector.add(int(random(50, 200)));
+  	}
+}
+
+void applySorter(){
+	recordingList = new RecordingList<>(vector);
+	QuickSort.sort(recordingList);
+	recordingList.stop();
+	// print(recordingList);
 }

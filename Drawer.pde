@@ -12,7 +12,7 @@ public class Drawer{ //gaveta
 	}
 
 	public Drawer(int wid, int x, int y){
-		this(wid, x, y, color(200, 200, 200));
+		this(wid, x, y, color(255, 255, 255));
 	}
 
 	public void drawValue(Integer value){

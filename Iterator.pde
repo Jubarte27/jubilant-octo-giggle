@@ -2,16 +2,25 @@ public class Iterator{
 	private Drawer drawer;
 	private ArrayList<Integer> vector;
 	private ArrayList<Access> accesses;
+	private RecordingList<Integer> recording;
+	private int accessIndex = 0;
+
 	private int delayMilliseconds = 10;
 
-	public Iterator(ArrayList<Integer> sortVector, ArrayList<Access> sortAccesses, Drawer dr){
+	private color swapColor = color(255, 0, 0);
+	private color readColor = color(0, 0, 255);
+	private color writeColor = color(0, 255, 255);
+	private color compareColor = color(0, 255, 0);
+
+	public Iterator(ArrayList<Integer> sortVector, RecordingList<Integer> sortRecording, Drawer dr){
 		drawer = dr;
 		vector = sortVector;
-		accesses = sortAccesses;
+		recording = sortRecording;
+		accesses = recording.getAccesses();
 	}
 
-	public Iterator(ArrayList<Integer> vec, ArrayList<Access> acs){
-		this(vec, acs, new Drawer(6, 10, 100));
+	public Iterator(ArrayList<Integer> sortVector, RecordingList<Integer> sortRecording){
+		this(sortVector, sortRecording, new Drawer(4, 10, 300));
 	}
 
 	private void applySwap(int firstIndex, int secondIndex){
@@ -23,32 +32,33 @@ public class Iterator{
 	private void handleSwap(Swap swapAccess){
 		int firstIndex = swapAccess.firstIndex;
 		int secondIndex = swapAccess.secondIndex;
-		drawer.drawValueAtIndex(vector.get(firstIndex), color(200, 0, 0), firstIndex);
-		drawer.drawValueAtIndex(vector.get(secondIndex), color(200, 0, 0), secondIndex);
+		drawer.drawValueAtIndex(vector.get(firstIndex), swapColor, firstIndex);
+		drawer.drawValueAtIndex(vector.get(secondIndex), swapColor, secondIndex);
 		applySwap(firstIndex, secondIndex);
 	}
 
 	private void handleRead(Read readAccess){
 		int index = readAccess.index;
-		drawer.drawValueAtIndex(vector.get(index), color(0, 0, 200), index);
+		drawer.drawValueAtIndex(vector.get(index), readColor, index);
 	}
 
 	private void handleWrite(Write writeAccess){
 		int index = writeAccess.index;
-		drawer.drawValueAtIndex(vector.get(index), color(200, 0, 200), index);
+		drawer.drawValueAtIndex(vector.get(index), writeColor, index);
 	}
 
 	private void handleCompare(Compare compareAccess){
 		int firstIndex = compareAccess.firstIndex;
 		int secondIndex = compareAccess.secondIndex;
 
-		drawer.drawValueAtIndex(vector.get(firstIndex), color(0, 200, 0), firstIndex);
-		drawer.drawValueAtIndex(vector.get(secondIndex), color(0, 200, 0), secondIndex);
+		drawer.drawValueAtIndex(vector.get(firstIndex), compareColor, firstIndex);
+		drawer.drawValueAtIndex(vector.get(secondIndex), compareColor, secondIndex);
 	}
 
 	private void drawAccess(){
-		if(!accesses.isEmpty()){
-			Access currentAccess = accesses.remove(0);
+		if(accesses.size() > accessIndex){
+			Access currentAccess = accesses.get(accessIndex);
+			accessIndex++;
 	
 			if(currentAccess instanceof Compare){
 				handleCompare((Compare) currentAccess);
@@ -62,9 +72,15 @@ public class Iterator{
 		}
 	}
 
+	private void printSortStats(){
+    fill(255,255,255);
+		text(recording.getStats(), 0, 10);
+	}
+
 	public void iterateThroughAccesses(){
 		drawer.drawVec(vector);
 		drawAccess();
+		printSortStats();
 		delay(delayMilliseconds);
 	}
 }

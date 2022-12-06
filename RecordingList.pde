@@ -74,4 +74,11 @@ public class RecordingList<E extends Comparable<? super E>> extends AbstractList
 				"compare: " + accesses.stream().filter(a -> a instanceof Compare).count() + "\n" +
 				"accesses:\n" + accesses.stream().map(Objects::toString).collect(Collectors.joining("\n")) + "\n";
 	}
+
+	public String getStats(){
+		return "read: " + accesses.stream().filter(a -> a instanceof Read).count() + "\n" +
+				"write: " + accesses.stream().filter(a -> a instanceof Write).count() + "\n" +
+				"swap: " + accesses.stream().filter(a -> a instanceof Swap).count() + "\n" +
+				"compare: " + accesses.stream().filter(a -> a instanceof Compare).count() + "\n";
+	}
 }
