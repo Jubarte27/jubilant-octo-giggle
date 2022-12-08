@@ -30,7 +30,7 @@ void randomizeVector(ArrayList<Integer> vector, int vecSize ){
 }
 
 void applySorter(RecordingList<Integer> recordingList){
-	QuickSort.sort(recordingList);
+	InplaceMergeSort.sort(recordingList);
 	recordingList.stop();
-	// print(recordingList);
+	 //print(recordingList);
 }
