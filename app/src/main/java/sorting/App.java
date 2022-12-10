@@ -2,6 +2,7 @@ package sorting;
 
 import processing.core.PApplet;
 import sorting.algorithms.InplaceMergeSort;
+import sorting.algorithms.MergeSort;
 import sorting.drawableList.RecordingList;
 import sorting.drawing.DrawIterator;
 
@@ -50,7 +51,7 @@ public class App extends PApplet {
     }
 
     private void applySorter(RecordingList<Integer> recordingList) {
-        InplaceMergeSort.sort(recordingList);
+        MergeSort.sort(recordingList);
         recordingList.stop();
     }
 }

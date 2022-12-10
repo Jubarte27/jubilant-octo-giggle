@@ -1,4 +1,4 @@
 package sorting.drawableList.access;
 
-public record Write(int index) implements Access {
+public record Write<E>(int index, E element) implements Access {
 }

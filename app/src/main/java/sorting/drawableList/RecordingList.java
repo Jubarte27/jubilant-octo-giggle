@@ -35,7 +35,7 @@ public class RecordingList<E extends Comparable<? super E>> extends AbstractList
 
     public E set(int index, E element) {
         if (recordingAccesses) {
-            accesses.add(new Write(index));
+            accesses.add(new Write<>(index, element));
         }
         return elements.set(index, element);
     }

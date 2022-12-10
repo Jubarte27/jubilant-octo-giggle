@@ -60,9 +60,10 @@ public class DrawIterator{
 		drawer.drawValueAtIndex(vector.get(index), readColor, index);
 	}
 
-	private void handleWrite(Write writeAccess){
+	private void handleWrite(Write<Integer> writeAccess){
 		int index = writeAccess.index();
 		drawer.drawValueAtIndex(vector.get(index), writeColor, index);
+		vector.set(index, writeAccess.element());
 	}
 
 	private void handleCompare(Compare compareAccess){
@@ -85,7 +86,7 @@ public class DrawIterator{
 			}else if(currentAccess instanceof Read){
 				handleRead((Read) currentAccess);
 			}else if(currentAccess instanceof Write){
-				handleWrite((Write)currentAccess);
+				handleWrite((Write<Integer>)currentAccess);
 			}
 		}
 	}
