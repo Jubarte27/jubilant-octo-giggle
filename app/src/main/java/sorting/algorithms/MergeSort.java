@@ -12,10 +12,7 @@ public class MergeSort {
     }
 
     private static <E extends Comparable<? super E>> List<E> mergeSort(List<E> m, int fromIndex, RecordingList<E> records) {
-        if (m.size() == 1) {
-            records.set(fromIndex, m.get(0));
-            return m;
-        } else if (m.size() < 1) {
+        if (m.size() <= 1) {
             return m;
         }
 

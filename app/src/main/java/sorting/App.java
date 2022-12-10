@@ -1,8 +1,7 @@
 package sorting;
 
 import processing.core.PApplet;
-import sorting.algorithms.InplaceMergeSort;
-import sorting.algorithms.MergeSort;
+import sorting.algorithms.*;
 import sorting.drawableList.RecordingList;
 import sorting.drawing.DrawIterator;
 
@@ -17,8 +16,8 @@ public class App extends PApplet {
 
     public void settings() {
         int vecSize = 100;
-        size(640, 360);
-
+//        size(640, 360);
+        fullScreen();
         ArrayList<Integer> vector = randomLadderVector(vecSize);
 
 

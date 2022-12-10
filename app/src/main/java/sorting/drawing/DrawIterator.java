@@ -37,8 +37,10 @@ public class DrawIterator{
 	private static Drawer defaultDrawer(PApplet applet, RecordingList<Integer> recording) {
 		int max = Collections.max(recording.initialElements());
 		int min = Collections.min(recording.initialElements());
-		float scaleY = applet.height / (float)(max - min);
-		return new Drawer(applet, (float) applet.width / recording.size(), 0, applet.height + (float) min, 1, scaleY);
+		float height = applet.sketchFullScreen() ? applet.displayHeight : applet.height;
+		float width = applet.sketchFullScreen() ? applet.displayWidth : applet.width;
+		float scaleY = height / (float)(max - min);
+		return new Drawer(applet, (float) width / recording.size(), 0, height + (float) min, 1, scaleY);
 	}
 
 	private void applySwap(int firstIndex, int secondIndex){
