@@ -50,7 +50,7 @@ public class App extends PApplet {
     }
 
     private void applySorter(RecordingList<Integer> recordingList) {
-        MergeSort.sort(recordingList);
+        RadixSort.sort(recordingList);
         recordingList.stop();
     }
 }
