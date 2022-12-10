@@ -64,8 +64,12 @@ public class RecordingList<E extends Comparable<? super E>> extends AbstractList
         return func.apply(elements.get(i), elements.get(j));
     }
 
-    public void stop() {
+    public void stopRecording() {
         recordingAccesses = false;
+    }
+
+    public void startRecording() {
+        recordingAccesses = true;
     }
 
     @Override

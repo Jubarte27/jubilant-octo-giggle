@@ -15,9 +15,9 @@ public class App extends PApplet {
     private DrawIterator drawIterator;
 
     public void settings() {
-        int vecSize = 100;
-//        size(640, 360);
-        fullScreen();
+        int vecSize = 6;
+        size(640, 360);
+//        fullScreen();
         ArrayList<Integer> vector = randomLadderVector(vecSize);
 
 
@@ -32,6 +32,7 @@ public class App extends PApplet {
         noStroke();
         textSize(10);
         colorMode(RGB, 1);
+        frameRate(Integer.MAX_VALUE);
     }
 
     public void draw() {
@@ -50,7 +51,7 @@ public class App extends PApplet {
     }
 
     private void applySorter(RecordingList<Integer> recordingList) {
-        RadixSort.sort(recordingList);
-        recordingList.stop();
+        BogoSort.sort(recordingList);
+        recordingList.stopRecording();
     }
 }
