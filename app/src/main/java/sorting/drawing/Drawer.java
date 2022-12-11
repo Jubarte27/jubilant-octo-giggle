@@ -37,7 +37,7 @@ public class Drawer { //gaveta
     }
 
     public void drawValue(Integer value, Color col, float positionX) {
-        applet.fill(col.r(), col.r(), col.g(), col.a());
+        applet.fill(col.r(), col.g(), col.b(), col.a());
         applet.rect(positionX, initialY, positionX + (columnWidth * scaleX), initialY - (value * scaleY));
     }
 
